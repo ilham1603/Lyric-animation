@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Lyrics</title>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+    body{
+    margin: 0;
+  }
+    .lyrics {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: url(sad2.jpg) no-repeat center ;
+      background-size: cover;
+      height: 100vh;
+      gap: 10px;
+      
+    }
+    .konten {
+      position: relative;
+      width: 100%;
+      text-align: center;
+    }
+    
+    span {
+      opacity: 0;
+      text-align: center;
+      transition: opacity 1s ease;
+      font-size: 30px;
+      font-style: bold;
+      font-family: "Satisfy", Cursive;
+      text-shadow: 0px 0px 10px white;
+    }
+  
+    .show {
+      opacity: 1;
+    }
+    span .translate {
+      opacity: 1;
+      font-family: Courier;
+      font-size: 16px;
+      text-shadow: 0px 0px 1px black;
+      color: red;
+    }
+    .none {
+      display: none;
+    }
+    </style>
+</head>
+<body>
+  <div class="lyrics">
+    <div class="konten">
+      <span id="line1">So many adventures </br><span class="translate">Begitu banyak petualangan</span></span>
+      <span id="line2" class="none">Couldn't happen today </br><span class="translate">tak bisa terjadi hari ini</span></span>
+      <span id="line3" class="none">so many songs </br><span class="translate">begitu banyak lagu</span></span>
+      <span id="line4" class="none">We forgot to play </br><span class="translate">yang kita lupa mainkan</span></span>
+      <span id="line5" class="none">so many dreams </br><span class="translate">begitu banyak mimpi</span></span>
+      <span id="line6" class="none">swinging out of the blue </br><span class="translate">tiba-tiba datang entah dari mana</span></span>
+      <span id="line7" class="none">We let them come true </br><span class="translate">kita biarkan mereka menjadi kenyataan</span></span>
+      <span id="line8" class="none">forever young </br><span class="translate">muda selamanya</span></span>
+      <span id="line9" class="none">I want to be forever young </br><span class="translate">aku ingin menjadi muda selamanya</span></span>
+      <span id="line10" class="none">Do you really want to live forever? </br><span class="translate">Apa kamu sungguh ingin hidup selamanya?</span></span>
+      <span id="line11" class="none">forever or never? </br><span class="translate">selamanya atau tidak?</span></span>
+      <span id="line12" class="none">forever young </br><span class="translate">muda selamanya</span></span>
+      <span id="line13" class="none">I want to be forever young </br><span class="translate">aku ingin menjadi muda selamanya</span></span>
+      <span id="line14" class="none">Do you really want to live forever? </br><span class="translate">Apa kamu sungguh ingin hidup selamanya?</span></span>
+      <span id="line15" class="none">forever or never? </br><span class="translate">selamanya atau tidak?</span></span>
+    </div>
+    <audio src="foreveryoung.mp3" id="musik" ></audio>
+  </div>
+    <script>
+      let musik = document.getElementById('musik') ;
+      document.addEventListener("click", function() {
+        musik.play();
+        const lines = [
+          document.getElementById("line1"),
+          document.getElementById("line2"),
+          document.getElementById("line3"),
+          document.getElementById("line4"),
+          document.getElementById("line5"),
+          document.getElementById("line6"),
+          document.getElementById("line7"),
+          document.getElementById("line8"),
+          document.getElementById("line9"),
+          document.getElementById("line10"),
+          document.getElementById("line11"),
+          document.getElementById("line12"),
+          document.getElementById("line13"),
+          document.getElementById("line14"),
+          document.getElementById("line15"),
+        ];
+        const delays = [2400, 2100, 2000 ,2000, 1600, 1900, 2800, 2000, 5000, 3800, 3200, 2000, 5000, 3800, 3200];
+
+        let totalDelay = 0;
+        lines.forEach((line, index) => {
+            setTimeout(() => {
+              if (index > 0) {
+                lines[index - 1].classList.remove("show");
+                lines[index - 1].classList.add("none");
+              }
+              line.classList.add("show");
+              line.classList.remove("none");
+            }, totalDelay); 
+            totalDelay += delays[index];
+        });
+      });
+    </script>
+</body>
+</html>
